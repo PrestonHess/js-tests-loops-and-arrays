@@ -4,6 +4,9 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+    let first = arr.shift();
+    arr.push(first);
+    return arr;
 }
 
 
@@ -16,6 +19,13 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+    let largest = 0;
+    arr.forEach(num => {
+        if (num > largest) {
+            largest = num;
+        }
+    })
+    return largest;
 }
 
 
@@ -28,6 +38,9 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+  let newArr = [];
+  arr.forEach(num => newArr.push(num * arr.length));
+  return newArr;
 }
 
 
@@ -41,7 +54,14 @@ function elemsTimesLength(arr) {
 // Primitive data types - https://developer.mozilla.org/en-US/docs/Glossary/Primitive
 
 function arrayFlattener(arr) {
-
+    let newArr = arr.flat(5);
+    let result = []
+    for (let i = 0; i < newArr.length; i++) {
+        if (typeof newArr[i] !== "object") {
+            result.push(newArr[i]);
+        }
+    }
+    return newArr;
 }
 
 
@@ -76,7 +96,14 @@ let flights = [{
 
 function flightCost(destination, firstClass) {
     //***hint: use the find method***
-
+    
+    let dest = destination.toUpperCase();
+    let foundFlight = flights.find( flight => ( flight.to == dest));
+    if (firstClass) {
+        return foundFlight.prices.firstClass;
+    } else {
+        return foundFlight.prices.standard;
+    }
 }
 
 
@@ -97,7 +124,14 @@ let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'P
 { id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
 
 function findById(id) {
-
+    let foundUser = staff.find(user => user.id == id);
+    if (!foundUser) {
+        return {
+            error: "No user with that id."
+        }
+    } else {
+        return foundUser;
+    }
 }
 
 
@@ -124,4 +158,8 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
+    let bandMember = theBand.members.find(mem => mem.name == name);
+    let memberName = bandMember.name;
+    let instrument = bandMember.instrument;
+    return `${memberName} is in the band and plays the ${instrument}`;
 }
