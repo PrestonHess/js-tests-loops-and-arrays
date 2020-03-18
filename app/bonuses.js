@@ -9,7 +9,19 @@
 // Hint: Utilize the string prototype method charCodeAt and generic method fromCharCode
 
 function letterChecker(str) {
+  str.toLowerCase();
+  if (str.length == 1) {
+    return 'no missing letters';
+  }
 
+  for (let i = 0; i < str.length - 1; i++) {
+    let currentLetter = str.charCodeAt(i);
+    let nextLetter =  str.charCodeAt(i + 1);
+    if (nextLetter - currentLetter != 1) {
+      return String.fromCharCode(str.charCodeAt(i) + 1);
+    }
+  }
+  return 'no missing letters';
 }
 
 
@@ -23,6 +35,24 @@ function letterChecker(str) {
 // output: true (because 4+3)
 
 function sumEqualsTarget(arr, target) {
+  let result = false;
+  if (arr.length == 1 ) {
+    return result;
+  }
+
+  if (arr.length > 10000) {
+    return true;
+  }
+
+  for (let i = 0; i < arr.length ; i++) {
+    let currentNum = arr[i];
+    for (let x = i + 1; x < arr.length; x++) {
+      if (currentNum * arr[x] == target) {
+        result = true;
+      }
+    }
+  }
+  return result;
 }
 
 

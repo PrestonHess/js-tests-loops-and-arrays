@@ -20,12 +20,22 @@ function rearranger(arr) {
 
 function largestNum(arr) {
     let largest = 0;
+    let occurance = 0;
+    let obj = {};
     arr.forEach(num => {
+        if (num == largest) {
+            occurance++
+        }
         if (num > largest) {
             largest = num;
+            obj[num] = occurance;
         }
     })
-    return largest;
+    if (occurance == 0) {
+        return largest;
+    } else {
+        return obj;
+    }
 }
 
 
@@ -54,14 +64,14 @@ function elemsTimesLength(arr) {
 // Primitive data types - https://developer.mozilla.org/en-US/docs/Glossary/Primitive
 
 function arrayFlattener(arr) {
-    let newArr = arr.flat(5);
-    let result = []
+    let newArr = arr.flat(Infinity);
+    let result = [];
     for (let i = 0; i < newArr.length; i++) {
         if (typeof newArr[i] !== "object") {
             result.push(newArr[i]);
         }
     }
-    return newArr;
+    return result;
 }
 
 
